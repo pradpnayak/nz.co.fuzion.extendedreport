@@ -320,10 +320,11 @@ class CRM_Extendedreport_Form_Report_ExtendedReport extends CRM_Report_Form {
       ];
       $this->metaData = array_fill_keys($definitionTypes, []);
       $this->metaData['having'] = [];
+      $this->metaData['links'] = [];
 
       foreach ($this->_columns as $table => $tableSpec) {
-        foreach ($definitionTypes as $type) {
-          foreach ($tableSpec['metadata'] as $fieldName => $fieldSpec) {
+        foreach ($tableSpec['metadata'] as $fieldName => $fieldSpec) {
+          foreach ($definitionTypes as $type) {
             $fieldSpec = array_merge(['table_name' => $table, 'group_title' => $tableSpec['group_title']], $fieldSpec);
             if (!isset($this->metaData[$fieldName])) {
               $this->metaData['metadata'][$fieldName] = $fieldSpec;
@@ -334,6 +335,9 @@ class CRM_Extendedreport_Form_Report_ExtendedReport extends CRM_Report_Form {
             if ($type === 'filters' && !empty($fieldSpec['having'])) {
               $this->metaData['having'][$fieldName] = $fieldSpec;
             }
+          }
+          if (!empty($fieldSpec['links'])) {
+            $this->metaData['links'][$fieldName] = $fieldSpec['links'];
           }
         }
       }

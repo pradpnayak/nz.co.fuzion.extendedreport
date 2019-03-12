@@ -39,7 +39,6 @@
 
     $scope.classicUrl = crmLegacy.url('civicrm/report/instance/' + reportInstance.id, 'reset=1output=html');
 
-    // We have myContact available in JS. We also want to reference it in HTML.
     $scope.reportMetadata = reportMetadata.values;
 
     function getLabels(fields) {
@@ -116,6 +115,7 @@
     $scope.reportOrderByFields = getSelectedOrderBys(form_values, reportMetadata.values['metadata']);
     $scope.fieldList = getUnselectedFields(reportMetadata.values['fields'], reportFields);
     $scope.orderBysList = getUnselectedSorting(reportMetadata.values['order_bys'], reportOrderBys);
+    $scope.reportLinks = reportMetadata.values['links'];
 
     $scope.sortableFieldOptions = {
       placeholder: "fieldItem",

@@ -1,7 +1,7 @@
 <div id="bootstrap-theme">
   <div crm-ui-debug="form_values"></div>
   <div crm-ui-debug="reportOrderByFields"></div>
-  <div crm-ui-debug="reportFields"></div>
+  <div crm-ui-debug="reportMetadata"></div>
 
   <h1 crm-page-title>{{ts('Extended Report Field Selection') }}</h1>
   <div class="help">
@@ -58,6 +58,10 @@
                 <div class="fieldItem" ng-repeat="fieldItem in selectedOrderBy.field_on_null">{{fieldItem.title}}</div>
               </div>
             </div>
+          </div>
+          <div class="floatleft" ng-if="reportMetadata.values.links">
+            <h2>{{ ts('Links') }}</h2>
+
           </div>
           <div class="clear"></div>
         </div>

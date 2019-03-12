@@ -284,6 +284,7 @@ trait CRM_Extendedreport_Form_Report_ColumnDefinitionTrait {
         'is_fields' => TRUE,
         'is_filters' => TRUE,
         'is_contact_filter' => TRUE,
+        'links' => $this->getContactLinks(),
       ],
       $options['prefix'] . 'external_identifier' => [
         'name' => 'external_identifier',
@@ -419,6 +420,36 @@ trait CRM_Extendedreport_Form_Report_ColumnDefinitionTrait {
       ],
     ];
     return $this->buildColumns($activityFields['civicrm_activity']['fields'], $options['prefix'] . 'civicrm_activity', 'CRM_Activity_DAO_Activity');
+  }
+
+  /**
+   * Get links relying on the contact id field.
+   *
+   * @todo -  I looked at generating a list that would include all contact
+   * actions & pick up hooks. For not out of scope but...
+   *
+   * @return array
+   */
+  protected function getContactLinks() {
+    return [
+
+      'view_contact' => [
+        'title' => ts('View Contact'),
+        'url' => 'civicrm/contact/view',
+        'query_parameters' => [
+          'reset' => 1,
+        ],
+        'this_field_parameter' => 'cid',
+      ],
+      'edit_contact' => [
+        'title' => ts('View Contact'),
+        'url' => 'civicrm/contact/view',
+        'query_parameters' => [
+          'reset' => 1,
+        ],
+        'this_field_parameter' => 'cid',
+      ],
+    ];
   }
 
 }
